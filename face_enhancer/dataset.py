@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 from torch.utils.data import Dataset
 from skimage.io import imread
+from glob import glob
 
 class ImageFolderDataset(Dataset):
     def __init__(self, root, cache=None, is_test=False):
@@ -11,9 +12,10 @@ class ImageFolderDataset(Dataset):
             with open(cache, 'rb') as f:
                 self.root, self.images, self.size = pickle.load(f)
         else:
-            self.images = sorted(os.listdir(os.path.join(root, 'test_real')))
+            # self.images = sorted(os.listdir(os.path.join(root, 'test_real')))
+            self.images = sorted(glob(os.path.join(root, 'test_real')+"/*/*/*"))
             self.root = root
-            tmp = imread(os.path.join(self.root, 'test_real', self.images[0]))
+            tmp = imread(self.images[0])
             self.size = tmp.shape[:-1]
             if cache is not None:
                 with open(cache, 'wb') as f:
@@ -22,9 +24,9 @@ class ImageFolderDataset(Dataset):
     # TODO: rewrite this part
     def __getitem__(self, item):
         name = self.images[item]
-        real_img = None if self.is_test else imread(os.path.join(self.root, 'test_real', name))
-        fake_img = imread(os.path.join(self.root, 'test_sync', name))
-        return real_img, fake_img
+        real_img = None if self.is_test else imread(name)
+        fake_img = imread(name.replace("test_real", 'test_sync'))
+        return real_img[:,:,:3], fake_img[:,:,:3]
 
     def __len__(self):
         return len(self.images)

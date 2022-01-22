@@ -11,9 +11,9 @@ class VGG_perceptual_loss(nn.Module):
 		super(VGG_perceptual_loss, self).__init__()
 		self.device=device
 		self.loss_function=nn.L1Loss()
-		self.vgg_features = vgg.make_layers(vgg.cfg['D'])
+		self.vgg_features = vgg.make_layers(vgg.cfgs['D'])
 		if pretrained:
-			self.vgg_features.load_state_dict(torch.load('utils/vgg16_pretrained_features.pth'))
+			self.vgg_features.load_state_dict(torch.load('everybody_dance_now_pytorch/face_enhancer/utils/vgg16_pretrained_features.pth'))
 		self.vgg_features.to(device)
 		# freeze parameter update
 		for params in self.vgg_features.parameters():

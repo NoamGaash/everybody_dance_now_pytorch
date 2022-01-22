@@ -39,10 +39,10 @@ def load_models(directory, batch_num):
 
 def main(is_debug):
     # configs
-    dataset_dir = '../datasets/cardio_dance_512'
-    pose_name = '../datasets/cardio_dance_512/poses.npy'
-    ckpt_dir = './checkpoints/dance_test_new_down2_res6'
-    log_dir = './logs/dance_test_new_down2_res6'
+    dataset_dir = './prepered_datasets/T0000'
+    pose_name = './prepered_datasets/T0000/poses.npy'
+    ckpt_dir = './prepered_datasets/T0000/checkpoints'
+    log_dir = './prepered_datasets/T0000/logs'
     batch_num = 0
     batch_size = 64
 

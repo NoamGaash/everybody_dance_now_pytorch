@@ -20,7 +20,7 @@ image_transforms = transforms.Compose([
 def load_models(directory, batch_num):
     # 20180924: smaller network.
     generator = model.GlobalGenerator(n_downsampling=2, n_blocks=6)
-    discriminator = model.NLayerDiscriminator(input_nc=3, n_layers=3)  # 48 input
+    discriminator = model.NLayerDiscriminator(input_nc=4, n_layers=3)  # 48 input
     gen_name = os.path.join(directory, '%05d_generator.pth' % batch_num)
     dis_name = os.path.join(directory, '%05d_discriminator.pth' % batch_num)
 

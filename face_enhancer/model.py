@@ -52,7 +52,7 @@ class ResnetBlock(nn.Module):
 
 # transported from pix2pixHD project
 class GlobalGenerator(nn.Module):
-    def __init__(self, input_nc=3, output_nc=3, ngf=64, n_downsampling=3, n_blocks=9, norm_layer=nn.BatchNorm2d,
+    def __init__(self, input_nc=4, output_nc=4, ngf=64, n_downsampling=3, n_blocks=9, norm_layer=nn.BatchNorm2d,
                  padding_type='reflect'):
         assert (n_blocks >= 0)
         super(GlobalGenerator, self).__init__()

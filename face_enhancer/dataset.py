@@ -26,7 +26,8 @@ class ImageFolderDataset(Dataset):
         name = self.images[item]
         real_img = None if self.is_test else imread(name)
         fake_img = imread(name.replace("test_real", 'test_sync'))
-        return real_img[:,:,:3], fake_img[:,:,:3]
+        return real_img, fake_img
+        #return real_img[:,:,:3], fake_img[:,:,:3]
 
     def __len__(self):
         return len(self.images)

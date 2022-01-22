@@ -13,7 +13,7 @@ from PIL import Image
 image_transforms = transforms.Compose([
         Image.fromarray,
         transforms.ToTensor(),
-        transforms.Normalize([.5, .5, .5], [.5, .5, .5]),
+        transforms.Normalize([.5, .5, .5, .5], [.5, .5, .5, .5]),
     ])
 
 

@@ -28,6 +28,8 @@ class VGG_perceptual_loss(nn.Module):
 	def forward(self, input, target):
 		# TODO: extract 16 layers of activations and return weighted L1-loss.
 		loss = torch.tensor(0.).to(self.device)
+		input = input[:, :3, :, :] # rgba to rgb
+		target = target[:, :3, :, :] # rgba to rgb
 		for name, module in self.vgg_features._modules.items():
 			input = module(input)
 			target = module(target)
